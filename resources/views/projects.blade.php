@@ -97,9 +97,16 @@
             <th>Date</th>
             <th>Deadline</th>
             <th>Link</th>
-            <th>Actions</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
     </thead>
+    <div style="text-align: right; margin: 10px 20px;">
+    <button onclick="window.location.href='{{ route('logout') }}'"
+            style="padding: 8px 16px; background-color: rgb(59, 10, 234); color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Logout
+    </button>
+</div>
     <tbody>
         @foreach ($projects as $project)
             <tr>
@@ -108,13 +115,12 @@
                 <td>{{ $project->project_deadline }}</td>
                 <td><a href="{{ $project->project_link }}" target="_blank">Open</a></td>
                 <td class="actions">
-                    <a href="/edit-project/{{ $project->id }}">Edit</a>
-                    <a href="/delete-project/{{ $project->id }}" onclick="return confirm('Project Delete successfully')">Delete</a>
-                </td>
+                    <a href="/edit-project/{{ $project->id }}">Edit</a> </td>
+                                    <td><a href="/delete-project/{{ $project->id }}" onclick="return confirm('Project Delete successfully')">Delete</a></td>
+
             </tr>
         @endforeach
     </tbody>
 </table>
-
 </body>
 </html>

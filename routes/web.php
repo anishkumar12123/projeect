@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -8,6 +9,14 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\ProjectController;
+
+Route::get('/', [AuthController::class, 'showLoginForm'])->name('login.form');
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+Route::get('/login', function () {
+    return view('login');  // login.blade.php form view
+})->name('login');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
 
 Route::get('/add-project', [ProjectController::class, 'create']);
 Route::post('/store-project', [ProjectController::class, 'store']);
